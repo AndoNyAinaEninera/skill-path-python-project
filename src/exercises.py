@@ -24,7 +24,7 @@ PS: We assume that a customer is uniquely defined by their name. If "Martin Adam
 this is the same customer.
 """
 print("⚙️ Generating data...")
-your_favourite_food: SeedType = "I don't have a favourite dish"
+your_favourite_food: SeedType = "ravitoto"
 
 customer_specs = generate_data.CustomerSpecs(num_customers=5_000, min_age=12, max_age=80)
 order_specs = generate_data.OrderSpecs(num_orders_per_day=20, start_date=date(2024, 1, 1), end_date=date(2024, 12, 31))
@@ -52,7 +52,7 @@ As the first step, create a list `orders_strings` where each entry is only the s
 > Example output: ["Martin Adams ,51,M,Monday 01 January 2024,Bald,20", "Victor Barnes,28,M,Monday 01 January 2024,Mohawk,40", ...]
 """
 header_print("Exercise 1.1")
-orders_strings = ...
+orders_strings = data_string.split(";")
 # from .solutions.exercise_1_1 import orders_strings
 
 """
@@ -66,7 +66,7 @@ it `orders_lists`.
 > Example output: [["Martin Adams ", "51", "M", "Monday 01 January 2024", "Bald", "20"], ...]
 """
 header_print("Exercise 1.2")
-orders_lists = ...
+orders_lists = [i.split(",") for i in orders_strings]
 # from .solutions.exercise_1_2 import orders_list
 
 """
@@ -81,7 +81,11 @@ and name it `orders_cleaned`.
 > Example output: [["Martin Adams", "51", "M", "Monday 01 January 2024", "Bald", "20"], ...]
 """
 header_print("Exercise 1.3")
-orders_cleaned = ...
+
+orders_cleaned = orders_lists
+for i in orders_cleaned :
+    i[0] = i[0].strip()
+
 # from .solutions.exercise_1_3 import orders_cleaned
 
 """
@@ -98,7 +102,11 @@ new variable and name it `orders_casted`.
 > Example output: [["Martin Adams", 51, "M", "Monday 01 January 2024", "Bald", 20], ...]
 """
 header_print("Exercise 1.4")
-orders_casted = ...
+orders_casted = orders_cleaned
+for i in orders_casted :
+    i[1] = int(i[1])
+    i[5] = int(i[5])
+print(orders_casted[0:10])
 # from .solutions.exercise_1_4 import orders_casted
 
 """
