@@ -106,7 +106,7 @@ orders_casted = orders_cleaned
 for i in orders_casted :
     i[1] = int(i[1])
     i[5] = int(i[5])
-print(orders_casted[0:10])
+    
 # from .solutions.exercise_1_4 import orders_casted
 
 """
@@ -129,7 +129,9 @@ Exercise 2.1
 What were the first 3 orders?
 """
 header_print("Exercise 2.1")
-orders_first_3 = ...
+orders_first_3 = orders_casted[0:3]
+for i in orders_first_3 :
+    print(f"Customer {i[0]} got the haircut {i[4]} on {i[3]} for €{i[5]}.")
 
 """
 Exercise 2.2
@@ -137,7 +139,9 @@ Exercise 2.2
 What were the last 5 orders?
 """
 header_print("Exercise 2.2")
-orders_last_5 = ...
+orders_last_5 = orders_casted[-5:-1]
+for i in orders_last_5 :
+    print(f"Customer {i[0]} got the haircut {i[4]} on {i[3]} for €{i[5]}.")
 
 """
 Exercise 2.3
@@ -145,15 +149,18 @@ Exercise 2.3
 What was the 1000th order?
 """
 header_print("Exercise 2.3")
-order_1000 = ...
-
+order_1000 = orders_casted[999]
+print(f"Customer {order_1000[0]} got the haircut {order_1000[4]} on {order_1000[3]} for €{order_1000[5]}.")
+    
 """
 Exercise 2.4
 ============
 What were the 2000th until 2025th orders?
 """
 header_print("Exercise 2.4")
-order_2000_to_2025 = ...
+order_2000_to_2025 = orders_casted[1999:2025]
+for i in order_2000_to_2025 :
+    print(f"Customer {i[0]} got the haircut {i[4]} on {i[3]} for €{i[5]}.")
 
 """
 Exercise 3
@@ -168,8 +175,8 @@ then print how many there are in and who they are in this format: "There are ...
 Extra challenge: Try this with a set comprehension!
 """
 header_print("Exercise 3")
-unique_names = ...
-
+unique_names = list({i for i in [j[0] for j in orders_casted]})
+print (f"There are {len(unique_names)} unique names, namely {unique_names[0:10]}")
 """
 Exercise 4
 ==========
@@ -183,7 +190,10 @@ Exercise 4.1
 What was the total revenue in the data? Put this in a variable named `total_revenue`.
 """
 header_print("Exercise 4.1")
-total_revenue = ...
+total_revenue = 0
+for i in orders_casted :
+    total_revenue += i[5]
+print(f"total_revenue = €{total_revenue}")
 
 """
 Exercise 4.2
@@ -191,7 +201,11 @@ Exercise 4.2
 What was the revenue in the month of March 2024? Put this in a variable named `revenue_march_2024`.
 """
 header_print("Exercise 4.2")
-revenue_march_2024 = ...
+march_orders = [i for i in orders_casted if "March 2024" in i[3]]
+revenue_march_2024 = 0
+for i in march_orders :
+    revenue_march_2024 += i[5]
+print(f"revenue_march_2024 = €{revenue_march_2024}")
 
 """
 Exercise 4.3
@@ -199,8 +213,18 @@ Exercise 4.3
 What was the revenue on Mondays? What about on Sundays? Name these variables `revenue_mondays` and `revenue_sundays`.
 """
 header_print("Exercise 4.3")
-revenue_mondays = ...
-revenue_sundays = ...
+monday_orders = [i for i in orders_casted if "Monday" in i[3]]
+revenue_mondays = 0
+for i in monday_orders :
+    revenue_mondays += i[5]
+print(f"revenue_mondays = €{revenue_mondays}")
+
+
+sunday_orders = [i for i in orders_casted if "Sunday" in i[3]]
+revenue_sundays = 0
+for i in sunday_orders :
+    revenue_sundays += i[5]
+print(f"revenue_sundays = €{revenue_sundays}")
 
 """
 Exercise 4.4
