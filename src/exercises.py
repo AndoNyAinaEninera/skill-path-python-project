@@ -452,4 +452,4 @@ for j in customer_total.values() :
         is_greater_than_1000_exist = True
 
 if is_greater_than_1000_exist == False :
-    print("There is no order greater than 1000 in our dataset")
+    print("There is no order greater than €1,000.00 in our dataset")
