@@ -446,10 +446,5 @@ for i in orders_casted :
 
 
 # It seems like there is no total order greater than 1000 in our dataset, lets verify this.
-is_greater_than_1000_exist = False
-for j in customer_total.values() :
-    if j > 1000 :
-        is_greater_than_1000_exist = True
-
-if is_greater_than_1000_exist == False :
-    print("There is no order greater than €1,000.00 in our dataset")
+maximum_client, maximum_spended = max(customer_total), max(customer_total.values())
+print(f"There is no order greater than €1,000.00 in our dataset, the maximum is €{maximum_spended} spended by {maximum_client}")
